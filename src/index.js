@@ -1,15 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import App from './App';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 
 import booksReducer from './reducer/booksReducer.js';
- 
-const store = createStore(booksReducer);
+import booksCatalogReducer from './reducer/booksCatalogReducer.js';
+
+const reducers = combineReducers({
+    booksReducer: booksReducer,
+    booksCatalogReducer: booksCatalogReducer
+});
+
+const store = createStore(reducers);
 
 ReactDOM.render(
     <Provider store={store}>
-        <App/>
+        <App />
     </Provider>
     , document.getElementById('root'));

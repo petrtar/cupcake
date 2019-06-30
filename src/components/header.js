@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -26,13 +26,13 @@ export default function Header() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            <Link style={{ color: "#fff", textDecoration: "none"}} to={'/'}>Каталог</Link>
+            <Link style={{ color: "#fff", textDecoration: "none" }} to={'/'}>Каталог</Link>
           </Typography>
-            <Link  style={{ color: "#fff"}} to={'/Basket'}>
-                <Icon>
-                    shopping_basket
+          <Link style={{ color: "#fff" }} to={'/Basket'}>
+            <Icon>
+              shopping_basket
                 </Icon>
-            </Link>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>

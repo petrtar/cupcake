@@ -18,46 +18,49 @@ import ModalMore from './book/modalMore.js';
 
 
 const useStyles = makeStyles({
-    card: {
-      maxWidth: 345,
-      height: '100%',
-    },
-    media: {
-      height: 300,
-      padding: "none"
-    },
-    main:{
-      height: '100%',
-    }
-  });
+  card: {
+    maxWidth: 345,
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+  },
+  media: {
+    height: 300,
+    padding: "none"
+  },
+  main: {
+    height: '100%',
+  }
+});
 
 
 function Book(props) {
-    const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
-    const [openM, setOpenM] = React.useState(false);
+  const classes = useStyles();
+  const [openModalAdd, setOpenModalAdd] = React.useState(false);
+  const [openModalMore, setOpenModalMore] = React.useState(false);
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-    
-    const handleClose = () => {
-        setOpen(false);
-    }; 
+  const handleClickOpenModalAdd = () => {
+    setOpenModalAdd(true);
+  };
 
-    const handleClickOpenMore = () => {
-      setOpenM(true);
-    };
-    
-    const handleCloseMore = () => {
-      setOpenM(false);
-    }; 
+  const handleCloseModalAdd = () => {
+    setOpenModalAdd(false);
+  };
+
+  const handleClickOpenModalMore = () => {
+    setOpenModalMore(true);
+  };
+
+  const handleCloseModalMore = () => {
+    setOpenModalMore(false);
+  };
 
 
-      
-  
-    return (
-      <div  className={classes.main}>
+
+
+  return (
+    <div className={classes.main}>
       <Card className={classes.card}>
         <CardActionArea>
           <CardMedia
@@ -67,44 +70,44 @@ function Book(props) {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-            {props.title}
+              {props.title}
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small"  variant="contained" color="primary" onClick={handleClickOpen}>
+          <Button size="small" variant="contained" color="primary" onClick={handleClickOpenModalAdd}>
             Купить
           </Button>
-          <Button size="small"  variant="contained" color="primary" onClick={handleClickOpenMore}>
+          <Button size="small" variant="contained" color="primary" onClick={handleClickOpenModalMore}>
             Подробнее
           </Button>
           <span>{props.price}</span>
         </CardActions>
       </Card>
       <div>
-          <Dialog
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="draggable-dialog-title"
-          >
-              <DialogTitle id="draggable-dialog-title">Добавить в корзину</DialogTitle>
-              <DialogContent>
-                  <AddBookModal bookInfo={props} close={handleClose}/>
-              </DialogContent>
-          </Dialog>
-          <Dialog
-              open={openM}
-              onClose={handleCloseMore}
-              aria-labelledby="draggable-dialog-title"
-          >
-              <DialogTitle id="draggable-dialog-title">Подробнее</DialogTitle>
-              <DialogContent>
-                  <ModalMore bookInfo={props} close={handleCloseMore}/>
-              </DialogContent>
-          </Dialog>
-        </div>
+        <Dialog
+          open={openModalAdd}
+          onClose={handleCloseModalAdd}
+          aria-labelledby="draggable-dialog-title"
+        >
+          <DialogTitle id="draggable-dialog-title">Добавить в корзину</DialogTitle>
+          <DialogContent>
+            <AddBookModal bookInfo={props} close={handleCloseModalAdd} />
+          </DialogContent>
+        </Dialog>
+        <Dialog
+          open={openModalMore}
+          onClose={handleCloseModalMore}
+          aria-labelledby="draggable-dialog-title"
+        >
+          <DialogTitle id="draggable-dialog-title">Подробнее</DialogTitle>
+          <DialogContent>
+            <ModalMore bookInfo={props} close={handleCloseModalMore} />
+          </DialogContent>
+        </Dialog>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
 export default Book;

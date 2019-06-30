@@ -17,8 +17,7 @@ function Basket(props){
       }
 
 
-    if (props.books.length > 0){
-        
+    if (props.books.length > 0){        
         booksList = props.books.map((book)=>{
             return (
                 <li style={{listStyleType:"none"}} key={book.info.id}>
@@ -62,7 +61,7 @@ function Basket(props){
 
 function mapStateToProps (state) {
     return {
-        books: state
+        books: state.booksReducer
     }
   }
 
